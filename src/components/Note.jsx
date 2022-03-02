@@ -5,19 +5,24 @@ function Note(props) {
     return (
         <Draggable>
             <div>
-                <div
-                    className='bg-yellow-300 h-64 w-64 hover:scale-110 duration-300 shadow-xl note-text font-bold px-4 transform-origin-center'
-                    style={{
-                        transform: `translate(${props.position[0]}px, ${props.position[1]}px)`,
-                    }}
-                >
-                    <div className='flex items-center justify-center text-2xl h-1/6 text-black text-center'>
-                        {props.title}
-                    </div>
+                <div className='bg-yellow-300 h-64 w-64 hover:scale-110 duration-300 shadow-xl note-text font-bold px-4 transform-origin-center fixed top-0 left-0'>
+                    <input
+                        type='text'
+                        value={props.title}
+                        className='flex items-center justify-center mx-auto text-2xl h-1/6 text-black text-center font-bold bg-transparent'
+                        onChange={(e) => {
+                            props.changeTitle(e.target.value);
+                        }}
+                    />
                     <div className='h-px w-full mx-auto rounded-sm bg-gray-500' />
-                    <div className='h-4/6 flex items-center justify-center text-center text-xl overflow-auto my-auto px-4'>
-                        {props.text}
-                    </div>
+                    <textarea
+                        type='text'
+                        value={props.text}
+                        className='h-4/6 flex items-center justify-center text-center text-xl overflow-auto my-auto px-4 bg-transparent mx-auto font-semibold'
+                        onChange={(e) => {
+                            props.changeText(e.target.value);
+                        }}
+                    />
                     <div className='h-px w-full mx-auto rounded-sm bg-gray-500' />
                     <div className='flex items-center h-1/6'>
                         <svg
